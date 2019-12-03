@@ -2,8 +2,10 @@
 A simple version of the card game war.
 """
 
+from random import shuffle
+
 class Card:
-    """Represents a card in a deck"""
+    """Represents a card in a deck."""
 
     suites = [
         'spades',
@@ -47,3 +49,20 @@ class Card:
     def __repr__(self):
         v = f'{self.values[self.value]} of {self.suites[self.suite]}'
         return v
+
+class Deck:
+    """Create a card deck with 52 cards"""
+
+    def __init__(self):
+
+        self.cards = []
+        for i in range(2, 15):
+            for j in range(4):
+                self.cards.append(Card(i, j))
+        shuffle(self.cards)
+
+    def remove_card(self):
+        if len(self.cards) == 0:
+            return
+        else:
+            return self.cards.pop()

@@ -54,3 +54,22 @@ def test_card_lt():
 
     for x in variables:
         assert (war.Card(x[0], x[1]) < war.Card(x[2], x[3])) == x[4]
+
+def test_deck_has_52_cards():
+    """Check that a deck as 52 cards."""
+    deck = war.Deck()
+    assert len(deck.cards) == 52
+
+def test_deck_cards():
+    """Verify that there is no cards with None value in a deck."""
+
+    deck = war.Deck()
+    for card in deck.cards:
+        assert card.value != None
+
+def test_deck_card_suites():
+    """Test that there are only 4 suites."""
+
+    deck = war.Deck()
+    for card in deck.cards:
+        assert 0 <= card.suite <= 3
