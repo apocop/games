@@ -66,3 +66,10 @@ class Deck:
             return
         else:
             return self.cards.pop()
+
+class Player:
+    """Keeps track of player stats."""
+    def __init__(self, name):
+        self.name = name
+        self.win = 0
+        self.card = None
