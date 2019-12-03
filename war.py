@@ -5,18 +5,24 @@ A simple version of the card game war.
 class Card:
     """Represents a card in a deck"""
 
+    # suites = [
+    #     '♠',
+    #     '♥',
+    #     '♦',
+    #     '♣',
+    # ]
     suites = [
-        '♠',
-        '♥',
-        '♦',
-        '♣',
+        'spades',
+        'hearts',
+        'diamonds',
+        'clubs',
     ]
 
     # Designed so that the index matches the face value of card.
     values = [
         None, None,
         '2', '3', '4', '5', '6', '7' '8', '9', '10',
-        'Jack', ' King', 'Ace'
+        'Jack', 'Queen', ' King', 'Ace'
     ]
 
     def __init__(self, value, suite):
@@ -50,3 +56,5 @@ class Card:
 
 
 print(Card(2, 1))
+
+print
