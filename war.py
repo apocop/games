@@ -132,6 +132,7 @@ class Game:
         else:
             print(f'The War is over. {win} wins!')
 
+
     def winner(self, player1, player2):
         if player1.wins > player2.wins:
             return player1.name
@@ -141,5 +142,5 @@ class Game:
 
 
 if __name__ == '__main__':
-    game = Game(debug=True)
+    game = Game()
     game.play_game()
