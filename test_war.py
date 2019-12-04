@@ -2,7 +2,7 @@ import war
 
 class TestCard:
     def test_card_names(self):
-        """Test cards"""
+        """Test card names."""
         # value, suite, name.
         variables = [
             (2, 0, '2 of spades'),
@@ -77,5 +77,19 @@ class TestDeck:
         for card in deck.cards:
             assert 0 <= card.suite <= 3
 
+class TestGame:
 
+    def test_winner(self):
+        'Test that the winner is calculated correctly.'
+        game = war.Game(debug = True)
 
+        scores = [
+            (1, 2, 'Zelda'), 
+            (2, 1, 'Link'), 
+            (1, 1, "It was a tie!"), 
+        ]
+
+        for score in scores:
+            game.player1.wins = score[0]
+            game.player2.wins = score[1]
+            assert game.winner(game.player1, game.player2) == score[2]
