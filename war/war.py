@@ -1,5 +1,8 @@
 """
 A simple version of the card game 'War'.
+Based on the code from 
+"The Self-Taught Programmer: The Definitive Guide to Programming Professionally "
+by Cory Althoff
 """
 
 from random import shuffle
