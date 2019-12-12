@@ -1,20 +1,40 @@
+from sys import exit
+from random import randint
+
 class Scene(object):
 
     def enter(self):
-        pass
+        print("This scene it not yet configured.")
+        print("Subclass it and emplement enter().")
 
 class Engine(object):
     
     def __init__(self, scene_map):
-        pass
+        self.scene_map = scene_map
 
     def play(self):
-        pass
+        current_scene = self.scene_map.opening_scene()
+        last_scene = self.scene_map.next_scene('finished')
+
+        while current_scene != last_scene:
+            next_scene_name = current_scene.enter()
+            current_scene = self.scene_map.next_scene(next_scene_name)
+
+            current_scene.enter()
 
 class Death(Scene):
-    
+
+    quips = [
+            "You died.  You kinda suck at this.",
+            "Your mom would be proud... if she were smarter.",
+            "Such a luser",
+            "I have a small puppy that's better than this.",
+            "You're worse than your Dad's jokes.",
+        ]
+
     def enter(self):
-        pass
+        print(Death.quips[randint(0, len(self.quips)-1)])
+        exit(1)
 
 class CentralCooridor(Scene):
     def enter(self):
