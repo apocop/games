@@ -64,7 +64,7 @@ class CentralCooridor(Scene):
             makes him fly into an insane rage and blast you repeatedly in the face
             until you are dead.  Then he eats you.
             """))
-            return 'death'
+            return "death"
 
         elif action == "dodge":
             print(dedent("""
@@ -90,7 +90,7 @@ class CentralCooridor(Scene):
 
         else:
             print("DOES NOT COMPUTE!")
-            return "central_cooridor"
+            return "central_corridor"
 
 
 class LaserWeaponArmory(Scene):
@@ -221,16 +221,25 @@ class Finished(Scene):
 
 class Map(object):
 
+    scenes = {
+        "central_corridor" : CentralCooridor(),
+        "laser_weapon_armory" : LaserWeaponArmory(),
+        "the_bridge": TheBridge(),
+        "death": Death(),
+        "finished" : Finished()
+    }
+
     def __init__(self, start_scene):
-        pass
+        self.start_scene = start_scene
 
     def next_scene(self, scene_name):
-        pass
+        val = Map.scenes.get(scene_name)
+        return val
 
     def opening_scene(self):
-        pass
+        return self.next_scene(self.start_scene)
 
 
-a_map = Map('central_cooridor')
+a_map = Map("central_corridor")
 a_game = Engine(a_map)
 a_game.play()
