@@ -39,7 +39,7 @@ class Death(Scene):
 
 class CentralCooridor(Scene):
     def enter(self):
-        print((dedent("""
+        print(dedent("""
         The Gorthons of Planet Percal #25 have invaded your ship and
         destroyed your entire crew.  You are the last surviving member
         and your last mission is to get to the neutron destruct bomb
@@ -50,34 +50,34 @@ class CentralCooridor(Scene):
         teeth, and evil clown costume flowing around his hate filled
         body. He's blocking the door the Armory and about to pull
         a weapon to blast you.
-        """)))
+        """))
 
         action = input("> ")
 
         if action == "shoot!":
 
-            print((dedent("""
+            print(dedent("""
             Quick on the draw you yank out your blaster and fire it at the Gothon.
             His clown costume is flowing and moving around his body, which throws
             off your aim. Your lazer hits his costume, but misses him entirely.
             This completely ruins his brand new costume his mother bought him, which
             makes him fly into an insane rage and blast you repeatedly in the face
             until you are dead.  Then he eats you.
-            """)))
+            """))
             return 'death'
 
         elif action == "dodge":
-            print((dedent("""
+            print(dedent("""
             Like a world class boxer you dodge, weave, slip and slide ride as the
             Gothon's blaster cranks a laster past your head.  In the middle of your
             artful dodge your foot slips and you bang your head on the metal wall and
             pass out.  You wake up shortly only after to die as the Gothon stomps on
             your head and eats you.
-            """)))
+            """))
             return 'death'
 
         elif action == 'tell a joke':
-            print((dedent("""
+            print(dedent("""
             Lucky for you, they made you learn Gothon insults in the academy.
             You tell the one Gothon joke you know: 
             Tefed hi kobab zi nkop trulu. Zig montol kepkoi zi nkop. Tefedi
@@ -85,7 +85,7 @@ class CentralCooridor(Scene):
             The Gothon stops, tries to not laugh, then bursts our laughing and
             can't move.  While he's laughing you run up and shoot him square
             in the head putting him down, and jump though the Weapon Armory door.
-            """)))
+            """))
             return 'laser_weapon_armory'
 
         else:
@@ -96,7 +96,45 @@ class CentralCooridor(Scene):
 class LaserWeaponArmory(Scene):
 
     def enter(self):
-        pass
+        print(dedent("""
+        You do a dive role into the Weapon Armory, crouch and scan
+        the room for more Gothons that might be hiding.  It's dead
+        quiet, too quiet.  You stand up and run to the far side of
+        the room and find the neutron bomb in its container.
+        There's a keypad lock on the box and you need the code to
+        get the bomb out.  If you get the code wrong 10 times then
+        the lock closes forever and you can't get the bomb.  The
+        code is 3 digits.
+        """))
+
+        code = f'{randint(1,9)}{randint(1,9)}{randint(1,9)}'
+        guess = input("[keypad]> ")
+        guesses = 0
+
+        while guess != code and guesses < 10:
+            print('BZZZZZED!')
+            guesses += 1
+            guess = input('[keypad]> ')
+
+        if guess == code:
+            print(dedent("""
+            The container clicks open and the seal breaks, letting
+            gas out.  You grab the neutron bomb and run as fast as
+            you can do the bridge where you must place it on the
+            right spot.
+            """))
+            return 'bridge'
+            
+        else:
+            print(dedent("""
+            The lock buzzes one last time and then you hear a
+            sickening metal sound and the mechanism is fused
+            together.  You decide to sit there, and finally the
+            Gothons blow up the ship from their ship and you die.
+            """))
+            return 'death'
+
+
 
 class TheBridge(Scene):
     
