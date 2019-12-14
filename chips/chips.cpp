@@ -30,41 +30,38 @@ int main()
 	
 	// Start the game with a random number of chips in the pile.
 	chipsInPile = (rand() % MAX_CHIPS) + 1;
-	cout << "This round will start with " << chipsInPile << " chips in the pile.\n";
-	maxPerTurn = (chipsInPile * MAX_TURN);
 	
-	do
+	while (gameOver == false)
 	{
-		if (player1Turn)
+		
+		do
 		{
-			cout << playerName[0] << ": How many chips would you like?\n";
+			if (player1Turn)
+			{
+				cout << playerName[0] << ": How many chips would you like?\n";
+			}
+			else
+			{
+				cout << playerName[1] << ": How many chips would you like?\n";
+			}
+			cout << "This round will start with " << chipsInPile << " chips in the pile.\n";
+			maxPerTurn = (chipsInPile * MAX_TURN);
+			cout << "You can only take " << maxPerTurn << endl;
+			cin >> chipsTaken;
+		} while ((chipsTaken > maxPerTurn) && (chipsInPile > 1));
+		
+		chipsInPile = chipsInPile - chipsTaken;
+		cout << "There are " << chipsInPile << " left in the pile.\n";
+		if (chipsInPile == 0)
+		{
+			gameOver = true;
 		}
 		else
 		{
-			cout << playerName[1] << ": How many chips would you like?\n";
+			player1Turn = !player1Turn;
 		}
-		cout << "You can only take " << maxPerTurn << endl;
-		cin >> chipsTaken;
-	} while ((chipsTaken > maxPerTurn) && (chipsInPile > 1));
-	
-	chipsInPile = chipsInPile - chipsTaken;
-	cout << "There are " << chipsInPile << " left in the pile.\n"; 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	//int numTaken = (rand() % maxPerTurn) + 1;
-
-	//cout << "Number Taken: " << numTaken;
+		
+	}
 	
 	
 	return 0;
