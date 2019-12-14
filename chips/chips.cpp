@@ -66,6 +66,15 @@ int main()
 		if (chipsInPile == 0)
 		{
 			gameOver = true;
+			// Establish winner.
+			if (player1Turn)
+			{
+				cout << playerName[1] << ", congratulations you won!\n";
+			}
+			else
+			{
+				cout << playerName[0] << ", congratulations you won!\n";
+			}
 		}
 		else
 		{
