@@ -46,7 +46,18 @@ int main()
 			}
 			cout << "This round will start with " << chipsInPile << " chips in the pile.\n";
 			maxPerTurn = (chipsInPile * MAX_TURN);
-			cout << "You can only take " << maxPerTurn << endl;
+			
+			cout << "You can only take ";
+			
+			if (maxPerTurn == 0)
+			{
+				cout << " 1\n";
+			}
+			else
+			{
+				cout << maxPerTurn << endl;
+			}
+			
 			cin >> chipsTaken;
 		} while ((chipsTaken > maxPerTurn) && (chipsInPile > 1));
 		
