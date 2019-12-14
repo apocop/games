@@ -108,6 +108,7 @@ class LaserWeaponArmory(Scene):
         """))
 
         code = f'{randint(1,9)}{randint(1,9)}{randint(1,9)}'
+        print(f"Code is : {code}")
         guess = input("[keypad]> ")
         guesses = 0
 
@@ -120,11 +121,11 @@ class LaserWeaponArmory(Scene):
             print(dedent("""
             The container clicks open and the seal breaks, letting
             gas out.  You grab the neutron bomb and run as fast as
-            you can do the bridge where you must place it on the
+            you can to the bridge where you must place it on the
             right spot.
             """))
-            return "bridge"
-            
+            return "the_bridge"
+
         else:
             print(dedent("""
             The lock buzzes one last time and then you hear a
@@ -139,7 +140,7 @@ class TheBridge(Scene):
 
     def enter(self):
         print(dedent("""
-        You burst onto the Bride with the netron destruct bomb
+        You burst onto the Bridge with the netron destruct bomb
         under your arm and suprise 5 Gothons who are trying to
         take control of the ship.  Each of them has an uglier
         clown costume than the last.  They haven't pulled their
@@ -163,7 +164,7 @@ class TheBridge(Scene):
         elif action == "slowly place the bomb":
             print(dedent("""
             You point your blaster at the bomb under your arm and
-            the Gothons put there hands up and start to sweat.
+            the Gothons put their hands up and start to sweat.
             You inch backward to the door, open it, and then
             carefully place the bomb on the floor, pointing your
             blaster at it. Then you jump back through the door, 
@@ -191,6 +192,7 @@ class EscapePod(Scene):
             """))
 
         good_pod = randint(1, 4)
+        print(f'Correct pod: {good_pod}')
         guess = input("[pod #]> ")
 
         if int(guess) != good_pod:
@@ -203,7 +205,7 @@ class EscapePod(Scene):
             return "death"
 
         else:
-            print(dedent("""
+            print(dedent(f"""
                 You jump into pod {guess} and hit the eject button.
                 The pod easily slides out into space heading to the
                 planet below.  As it flies to the planet, you look
@@ -225,6 +227,7 @@ class Map(object):
         "central_corridor" : CentralCooridor(),
         "laser_weapon_armory" : LaserWeaponArmory(),
         "the_bridge": TheBridge(),
+        "escape_pod": EscapePod(),
         "death": Death(),
         "finished" : Finished()
     }
@@ -240,6 +243,6 @@ class Map(object):
         return self.next_scene(self.start_scene)
 
 
-a_map = Map("central_corridor")
+a_map = Map("the_bridge")
 a_game = Engine(a_map)
 a_game.play()
