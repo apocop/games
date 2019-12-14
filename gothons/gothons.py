@@ -21,7 +21,7 @@ class Engine(object):
             next_scene_name = current_scene.enter()
             current_scene = self.scene_map.next_scene(next_scene_name)
 
-            current_scene.enter()
+        current_scene.enter()
 
 class Death(Scene):
 
@@ -51,7 +51,7 @@ class CentralCooridor(Scene):
         body. He's blocking the door the Armory and about to pull
         a weapon to blast you.
         """))
-
+        print("Actions: shoot!, dodge, tell a joke")
         action = input("> ")
 
         if action == "shoot!":
@@ -108,7 +108,6 @@ class LaserWeaponArmory(Scene):
         """))
 
         code = f'{randint(1,9)}{randint(1,9)}{randint(1,9)}'
-        print(f"Code is : {code}")
         guess = input("[keypad]> ")
         guesses = 0
 
@@ -125,6 +124,9 @@ class LaserWeaponArmory(Scene):
             right spot.
             """))
             return "the_bridge"
+
+        if guess == "help":
+            print(f"You look the code up on your tricorder: {code}")
 
         else:
             print(dedent("""
@@ -147,7 +149,7 @@ class TheBridge(Scene):
         weapons out yet, as they see the active bomb under your
         arm and don't want to set it off.
         """))
-
+        print("Actions: throw the bomb, slowly place the bomb")
         action = input("> ")
 
         if action == "throw the bomb":
@@ -192,11 +194,11 @@ class EscapePod(Scene):
             """))
 
         good_pod = randint(1, 4)
-        print(f'Correct pod: {good_pod}')
+        # print(f'Correct pod: {good_pod}')
         guess = input("[pod #]> ")
 
         if int(guess) != good_pod:
-            print(dedent("""
+            print(dedent(f"""
                 You jump into pod {guess} and hit the eject button.
                 The pod escapes out into the void of space, then
                 implodes as the hull ruptures, crushing your body
@@ -243,6 +245,6 @@ class Map(object):
         return self.next_scene(self.start_scene)
 
 
-a_map = Map("the_bridge")
+a_map = Map("central_corridor")
 a_game = Engine(a_map)
 a_game.play()
