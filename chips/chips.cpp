@@ -15,6 +15,7 @@ int main()
 	
 	int chipsInPile = 0;
 	int chipsTaken = 0;
+	int maxPerTurn = 0;
 	
 	string playerName[2];
 	cout << "Player 1, please enter your name: \n";
@@ -22,7 +23,7 @@ int main()
 	cout << "Player 2, please enter your name: \n";
 	cin >> playerName[1];
 	
-	
+ 
 	
 	// Seed the random number generator.
 	srand(time(0));
@@ -30,7 +31,15 @@ int main()
 	// Start the game with a random number of chips in the pile.
 	chipsInPile = (rand() % MAX_CHIPS) + 1;
 	cout << "This round will start with " << chipsInPile << " chips in the pile.\n";
-	cout << "You can only take " << static_cast<int>(chipsInPile * MAX_TURN) << endl;
+	maxPerTurn = (chipsInPile * MAX_TURN);
+	cout << "You can only take " << maxPerTurn << endl;
+	
+
+	int numTaken = (rand() % maxPerTurn) + 1;
+
+	cout << "Number Taken: " << numTaken;
+	
 	
 	return 0;
 }
+
