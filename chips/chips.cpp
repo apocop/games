@@ -3,6 +3,7 @@
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
+#include <string>
 using namespace std;
 
 // Function prototypes.
@@ -79,8 +80,8 @@ int main()
 		
 		cout << "\nWould you like to play again? (Y/N):\n";
 		cin >> userChoice;
-		
-   } while ((userChoice == 'y') || (userChoice == 'Y'));  
+		userChoice = tolower(userChoice);
+   } while (userChoice == 'y');  
 	return 0;
 }
 
