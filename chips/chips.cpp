@@ -17,73 +17,80 @@ int main()
 	int chipsTaken = 0;
 	int maxPerTurn = 0;
 	
+	char userChoice;
+	// Seed the random number generator.
+	srand(time(0));
+	
+	// Get players' names.
 	string playerName[2];
 	cout << "Player 1, please enter your name: \n";
 	cin >> playerName[0];
 	cout << "Player 2, please enter your name: \n";
 	cin >> playerName[1];
+	cout << "\nThanks and good luck!\n";
+
 	
- 
-	
-	// Seed the random number generator.
-	srand(time(0));
-	
-	// Start the game with a random number of chips in the pile.
-	chipsInPile = (rand() % MAX_CHIPS) + 1;
-	
-	while (gameOver == false)
-	{
+	do{	
+		// Create a random number of chips in the pile.
+		chipsInPile = (rand() % MAX_CHIPS) + 1;
+		cout << "\nThis round will start with " << chipsInPile << " chips in the pile.\n";
+		gameOver = false;
 		
-		do
+		while (gameOver == false)
 		{
-			if (player1Turn)
+			do
 			{
-				cout << playerName[0] << ": How many chips would you like?\n";
+				if (player1Turn)
+				{
+					cout << playerName[0] << ": How many chips would you like?\n";
+				}
+				else
+				{
+					cout << playerName[1] << ": How many chips would you like?\n";
+				}
+				maxPerTurn = (chipsInPile * MAX_TURN);
+				
+				cout << "You can only take ";
+				
+				if (maxPerTurn == 0)
+				{
+					cout << " 1\n";
+				}
+				else
+				{
+					cout << maxPerTurn << endl;
+				}
+				
+				cin >> chipsTaken;
+				
+			} while ((chipsTaken > maxPerTurn) && (chipsInPile > 1));
+			
+			chipsInPile = chipsInPile - chipsTaken;
+			cout << "There are " << chipsInPile << " left in the pile.\n";
+			if (chipsInPile == 0)
+			{
+				gameOver = true;
+				// Declare winner.
+				if (player1Turn)
+				{
+					cout << playerName[1] << ", congratulations you won!\n";
+				}
+				else
+				{
+					cout << playerName[0] << ", congratulations you won!\n";
+				}
 			}
 			else
 			{
-				cout << playerName[1] << ": How many chips would you like?\n";
-			}
-			cout << "This round will start with " << chipsInPile << " chips in the pile.\n";
-			maxPerTurn = (chipsInPile * MAX_TURN);
-			
-			cout << "You can only take ";
-			
-			if (maxPerTurn == 0)
-			{
-				cout << " 1\n";
-			}
-			else
-			{
-				cout << maxPerTurn << endl;
+				player1Turn = !player1Turn;
 			}
 			
-			cin >> chipsTaken;
-		} while ((chipsTaken > maxPerTurn) && (chipsInPile > 1));
-		
-		chipsInPile = chipsInPile - chipsTaken;
-		cout << "There are " << chipsInPile << " left in the pile.\n";
-		if (chipsInPile == 0)
-		{
-			gameOver = true;
-			// Establish winner.
-			if (player1Turn)
-			{
-				cout << playerName[1] << ", congratulations you won!\n";
-			}
-			else
-			{
-				cout << playerName[0] << ", congratulations you won!\n";
-			}
 		}
-		else
-		{
-			player1Turn = !player1Turn;
-		}
 		
-	}
-	
-	
+		cout << "\nWould you like to play again? (Y/N):\n";
+		cin >> userChoice;
+		
+   } while ((userChoice == 'y') || (userChoice == 'Y'));  
 	return 0;
 }
 
