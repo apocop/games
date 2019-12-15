@@ -5,6 +5,11 @@
 #include <cstdlib>
 using namespace std;
 
+// Function prototypes.
+string FindPlayerName(string names[], bool playerTurn);
+
+
+
 // Maximum number of chips allowed.
 const int MAX_CHIPS = 100;
 const float MAX_TURN = .5;
@@ -40,14 +45,7 @@ int main()
 		{
 			do
 			{
-				if (player1Turn)
-				{
-					cout << playerName[0] << ": How many chips would you like?\n";
-				}
-				else
-				{
-					cout << playerName[1] << ": How many chips would you like?\n";
-				}
+				cout << FindPlayerName(playerName, player1Turn) << ": How many chips would you like?\n";
 				maxPerTurn = (chipsInPile * MAX_TURN);
 				
 				cout << "You can only take ";
@@ -70,15 +68,7 @@ int main()
 			if (chipsInPile == 0)
 			{
 				gameOver = true;
-				// Declare winner.
-				if (player1Turn)
-				{
-					cout << playerName[1] << ", congratulations you won!\n";
-				}
-				else
-				{
-					cout << playerName[0] << ", congratulations you won!\n";
-				}
+				cout << FindPlayerName(playerName, player1Turn) << ", congratulations you won!\n";
 			}
 			else
 			{
@@ -92,5 +82,14 @@ int main()
 		
    } while ((userChoice == 'y') || (userChoice == 'Y'));  
 	return 0;
+}
+
+
+string FindPlayerName(string names[], bool playerTurn)
+{
+	if (playerTurn)
+		return names[0];
+	else
+		return names[1];
 }
 
