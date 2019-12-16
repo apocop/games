@@ -76,6 +76,7 @@ void getUserNames(string players[])
 	cout << "Player 1, please enter your name: \n";
 	cin >> players[0];
 	cout << "Player 2, please enter your name: \n";
+	cout << "Enter 'AI' to play against the computer.\n";
 	cin >> players[1];
 	cout << "\nThanks and good luck!\n";
 }
@@ -101,12 +102,25 @@ int askMove(bool player1Turn, int chipsInPile, string names[])
 			cout << maxPerTurn << endl;
 		}
 		
-		cin >> chipsTaken;
-		
+		// AI Player plays turn.
+		if (FindPlayerName(names, player1Turn) == "AI")
+		{
+			if (maxPerTurn == 0)
+			{
+				chipsTaken = 1;
+			}
+			else
+			{
+				chipsTaken = (rand() % maxPerTurn) + 1;
+			}
+				
+		}
+		else
+		{
+			cin >> chipsTaken;
+		}
+			
 	} while ((chipsTaken > maxPerTurn) && (chipsInPile > 1));
 	return chipsTaken;
 }
-
-
-
 
