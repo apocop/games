@@ -4,6 +4,7 @@
 #include <ctime>
 #include <cstdlib>
 #include <string>
+#include <fstream>
 using namespace std;
 
 // Function prototypes.
@@ -26,6 +27,9 @@ int main()
 	char userChoice;
 	// Seed the random number generator.
 	srand(time(0));
+
+	ofstream outFile;
+	outFile.open("chips_win_record.txt", ios::app);
 	
 	// Get players' names.
 	string playerNames[2];
@@ -36,6 +40,7 @@ int main()
 		chipsInPile = (rand() % MAX_CHIPS) + 1;
 		cout << "\nThis round will start with " << chipsInPile << " chips in the pile.\n";
 		gameOver = false;
+		int moveCounter = 0;
 		
 		while (gameOver == false)
 		{
@@ -43,10 +48,12 @@ int main()
 			
 			chipsInPile = chipsInPile - chipsTaken;
 			cout << "There are " << chipsInPile << " left in the pile.\n";
+			moveCounter++;
 			if (chipsInPile == 0)
 			{
 				gameOver = true;
 				cout << FindPlayerName(playerNames, player1Turn) << ", congratulations you won!\n";
+				outFile << FindPlayerName(playerNames, player1Turn) << " won in with " << moveCounter << " moves.\n";
 			}
 			else
 			{
