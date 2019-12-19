@@ -6,13 +6,7 @@ bool gameOver;
 const int width = 20;
 const int height = 20;
 int x, y, fruitX, fruitY, score;
-enum eDirection {
-	STOP = 0,
-	LEFT,
-	RIGHT,
-	UP,
-	DOWN
-};
+enum eDirection {STOP = 0, LEFT, RIGHT, UP, DOWN};
 eDirection dir;
 
 void Setup()
@@ -59,6 +53,7 @@ void Draw()
 	for (int i = 0; i < width + 2; i++)
 	    cout << "#";
 	cout << endl;
+	cout << "Score: " << score << endl;
 }
 void Input()
 {
@@ -80,7 +75,9 @@ void Input()
 				break;
 			case 'x':
 				gameOver = true;
-				break;	
+				break;
+			default:
+				break;
 		}
 					
 	}
@@ -96,11 +93,23 @@ void Logic()
 			x++;
 			break;
 		case UP:
-			y++;
-			break;
-		case DOWN:
 			y--;
 			break;
+		case DOWN:
+			y++;
+			break;
+	}
+	// Set the boundries of where the snake head is supposed to go.
+	if (x > width || x < 0 || y > height || y < 0)
+	{
+		gameOver = true;
+		cout << "DEATH!";
+	}
+	if (x == fruitX && y == fruitY)
+	{
+		score += 10;
+		fruitX = rand() % width;
+		fruitY = rand() % height;
 	}
 }
 
