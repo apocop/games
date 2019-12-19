@@ -28,17 +28,24 @@ void Setup()
 void Draw()
 {
 	system("cls");
+	
+	// Draw top border.
 	for (int i = 0; i < width + 2; i++)
 	    cout << "#";
 	cout << endl;
 	
+	// Draw sides.
 	for (int i = 0; i < height; i++)
 	{
 		for (int j = 0; j < width; j++)
 		{
-			if (j ==0)
+			if (j == 0)
 			   cout << "#";
-			
+			if (i == y && j == x)
+			   cout << "O";
+			else if (i == fruitY && j == fruitX)
+			   cout <<  "\uD83C";
+			else
 			   cout << " ";
 			if (j == width - 1)
 			   cout << "#";
@@ -47,6 +54,7 @@ void Draw()
 		cout << endl;
 	}
 	
+	// Draw bottom border.
 	for (int i = 0; i < width + 2; i++)
 	    cout << "#";
 	cout << endl;
