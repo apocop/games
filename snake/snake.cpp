@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+#include <conio.h>
 using namespace std;
 bool gameOver;
 const int width = 20;
@@ -44,7 +45,7 @@ void Draw()
 			if (i == y && j == x)
 			   cout << "O";
 			else if (i == fruitY && j == fruitX)
-			   cout <<  "\uD83C";
+			   cout <<  "F";
 			else
 			   cout << " ";
 			if (j == width - 1)
