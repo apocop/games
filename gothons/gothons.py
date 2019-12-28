@@ -1,15 +1,19 @@
+"""
+A simple choose your own adventure game.
+"""
+
 from sys import exit
 from random import randint
 from textwrap import dedent
 
-class Scene(object):
-
+class Scene:
+    """Empty scene."""
     def enter(self):
         print("This scene it not yet configured.")
         print("Subclass it and emplement enter().")
 
-class Engine(object):
-    
+class Engine:
+    """Game engine."""
     def __init__(self, scene_map):
         self.scene_map = scene_map
 
@@ -24,13 +28,13 @@ class Engine(object):
         current_scene.enter()
 
 class Death(Scene):
-
+    """Game Over scene."""
     quips = [
-            "You died.  You kinda suck at this.",
-            "Your mom would be proud... if she were smarter.",
-            "Such a luser",
-            "I have a small puppy that's better than this.",
-            "You're worse than your Dad's jokes.",
+        "You died.  You kinda suck at this.",
+        "Your mom would be proud... if she were smarter.",
+        "Such a luser",
+        "I have a small puppy that's better than this.",
+        "You're worse than your Dad's jokes.",
         ]
 
     def enter(self):
@@ -38,6 +42,7 @@ class Death(Scene):
         exit(1)
 
 class CentralCooridor(Scene):
+    """Starting Scene"""
     def enter(self):
         print(dedent("""
         The Gorthons of Planet Percal #25 have invaded your ship and
@@ -94,7 +99,7 @@ class CentralCooridor(Scene):
 
 
 class LaserWeaponArmory(Scene):
-
+    """Second Scene."""
     def enter(self):
         print(dedent("""
         You do a dive role into the Weapon Armory, crouch and scan
@@ -139,7 +144,7 @@ class LaserWeaponArmory(Scene):
 
 
 class TheBridge(Scene):
-
+    """Third Scene."""
     def enter(self):
         print(dedent("""
         You burst onto the Bridge with the netron destruct bomb
@@ -181,7 +186,7 @@ class TheBridge(Scene):
 
 
 class EscapePod(Scene):
-
+    """Fourth Scene."""
     def enter(self):
         print(dedent("""
             You rush through the ship desperately trying to make it to
@@ -218,13 +223,13 @@ class EscapePod(Scene):
             return "finished"
 
 class Finished(Scene):
-
+    """Winning Scene."""
     def enter(self):
         print("You won! Good job.")
         return "finished"
 
-class Map(object):
-
+class Map:
+    """Maps scene names to their respective object"""
     scenes = {
         "central_corridor" : CentralCooridor(),
         "laser_weapon_armory" : LaserWeaponArmory(),
@@ -245,6 +250,6 @@ class Map(object):
         return self.next_scene(self.start_scene)
 
 
-a_map = Map("central_corridor")
-a_game = Engine(a_map)
-a_game.play()
+A_MAP = Map("central_corridor")
+A_GAME = Engine(A_MAP)
+A_GAME.play()
